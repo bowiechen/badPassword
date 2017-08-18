@@ -1,4 +1,15 @@
-var password = document.getElementById("password");
+var password = null;
+var candidate = [];
+candidate[0] = document.getElementById("password"); // GitHub
+candidate[1] = document.getElementById("pass"); // Facebook
+if (candidate[0] && !candidate[1]) {
+    password = candidate[0];
+} else if (!candidate[0] && candidate[1]) {
+    password = candidate[1];
+} else {
+    console.error("i'm confused. ");
+    console.error(candidate);
+}
 var lastChanged = Date.now();
 
 function passwordExistInDump(string) {
