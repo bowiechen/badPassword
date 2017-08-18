@@ -8,23 +8,22 @@ function passwordExistInDump(string) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             if (xhr.status == 200) {
-                // document.body.innerHTML = document.body.innerHTML.replace("Password", "Your password is potentially compromised. Change your password now.");
-                alert('Password compromised. Consider choosing another password.');
+                alert("Password compromised. Consider changing your password to something else.\n Data source: https://haveibeenpwned.com");
                 // console.info("Password found, use another password.");
                 return true;
             } else if (xhr.status == 404) {
                 // console.info("Password not found, this password good.");
                 return false;
-            } else {
-                console.error(xhr.responseText);
+            } else if (xhr.status == 429) {
+                return false;
             }
         }
     }
-    xhr.open("GET", requestAddress + '/' + string, true);
+    // GET
+    xhr.open("GET", requestAddress + "/" + string, true);
     xhr.send();
-    // POST
+    // POST?
     // xhr.open("POST", requestAddress, true);
-    // xhr.setRequestHeader("", );
     // xhr.send({"Password": string});
 }
 
@@ -37,10 +36,15 @@ window.onkeyup = function(e) {
 
 
 if (password !== null) {
-    console.info("engaged password field.");
+    // console.info("engaged password field.");
     password.addEventListener("change", function() {
-        passwordExistInDump(password.value);
+        if (Date.now() > lastChanged + 1750) {
+            passwordExistInDump(password.value);
+            lastChanged = Date.now();
+        } else {
+            lastChanged = Date.now();
+        }
     });
 } else {
-    console.info("could not find password field.");
+    // console.info("could not find password field.");
 }
