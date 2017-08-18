@@ -2,7 +2,7 @@
 
 A Chrome extension that searches for password text fields and passes the input into [Have I been pwned](https://haveibeenpwned.com) API to verify if the password input exists in known data dumps.
 
-## Installing
+## Installation
 
 ### Unpacked Extension 
 
