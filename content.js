@@ -28,11 +28,18 @@ function passwordExistInDump(string) {
     // xhr.send({"Password": string});
 }
 
+window.onkeyup = function(e) {
+    var key = e.keyCode ? e.keyCode : e.which;
+    if (key == 13) {
+        passwordExistInDump(password.value);
+    }
+}
+
 
 if (password !== null) {
     console.info("engaged password field.");
     password.addEventListener("change", function() {
-        console.log(passwordExistInDump(password.value));
+        passwordExistInDump(password.value);
     });
 } else {
     console.info("could not find password field.");
