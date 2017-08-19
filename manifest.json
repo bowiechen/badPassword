@@ -1,6 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "badPassword",
+	"description": "A Chromium extension that queries the haveibeenpwned.com API to check if password exists in known data dumps.",
 	"version": "1.0",
 	"permissions": [
 		"activeTab"
